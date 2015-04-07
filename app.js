@@ -1,7 +1,10 @@
 // 树的根节点
-var App = Ember.Application.create({
+// Ember have a shorcut 'Em'
+var App = Em.Application.create({
   LOG_TRANSITIONS: true
 });
+
+App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 // 树的枝干, 用于寻找到叶子节点(template)
 App.Router.map(function() {
@@ -25,7 +28,7 @@ App.Router.map(function() {
   // * verbs
   // use resource for nouns
   this.resource('products', function() {
-    this.resource('product', {path: '/:title'});
+    this.resource('product', {path: '/:product_id'});
   });
 
   // Ember Router and Ember Route
@@ -46,24 +49,6 @@ App.IndexController = Ember.Controller.extend({
 });
 
 
-App.PRODUCTS = [
-{
-  title: 'Flint',
-  price: 99,
-  description: 'Flint is ...',
-  isOnSale: true,
-  image: 'flint.png'
-},
-{
-  title: 'Kindling',
-  price: 249,
-  description: 'Easily...',
-  isOnSale: false,
-  image: 'kindling.png'
-}
-]
-
-
 // 如果将内容放在 controller 里面, 仍然可以实现数据的填充呀?
 // 难道是为了在 Route 中进行远端数据的获取填充?
 /*
@@ -73,13 +58,57 @@ App.ProductsController = Ember.Controller.extend({
 */
 App.ProductsRoute = Ember.Route.extend({
   model: function() {
-    return App.PRODUCTS;
+    return this.store.findAll('product');
   }
 });
 
+/* 如果仅仅是从 id 查询, 则所有代码可省略
 App.ProductRoute = Ember.Route.extend({
   model: function(params) {
     console.log(params);
-    return App.PRODUCTS.findBy('title', params.title);
+    return this.store.find('product', params.product_id);
   }
 });
+*/
+
+
+// Ember Data
+// Ember Data has a Store: Central repository for records in your application,
+// available in [routes(route)] and [controllers]
+App.Product = DS.Model.extend({
+  /* 
+  // 自己设置所有属性的类型
+  title: DS.attr('string'),
+  price: DS.attr('number'),
+  description: DS.attr('string'),
+  isOnSale: DS.attr('boolean'),
+  image: DS.attr('string')
+  */
+  // 当然 JS 弱类型语言, 也可以将这些交给 Ember 来处理
+  title: DS.attr(),
+  price: DS.attr(),
+  description: DS.attr(),
+  isOnSale: DS.attr(),
+  image: DS.attr()
+});
+
+App.Product.FIXTURES = [
+  {
+    id: 5,
+    title: 'Flint',
+    price: 99,
+    description: 'Flint is ...',
+    isOnSale: true,
+    image: 'flint.png'
+  },
+  {
+    id: 3,
+    title: 'Kindling',
+    price: 249,
+    description: 'Easily...',
+    isOnSale: false,
+    image: 'kindling.png'
+  }
+]
+
+
