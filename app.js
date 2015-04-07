@@ -24,15 +24,15 @@ App.Router.map(function() {
   // * adverbs
   // * verbs
   // use resource for nouns
-  this.resource('products');
+  this.resource('products', function() {
+    this.resource('product', {path: '/:title'});
+  });
 
   // Ember Router and Ember Route
   // * Router: Translate a path into a route
   // * Route: Provides data for the controller
 
   // Router -> Route -> Controller -> Template
-
-  this.resource('product', {path: '/product/:title'});
 });
 
 // every route has a Default Controller
