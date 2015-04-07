@@ -19,3 +19,13 @@ App.Router.map(function() {
 
   // have a index template default route
 });
+
+// every route has a Default Controller
+// index => IndexController
+App.IndexController = Ember.Controller.extend({
+  productsCount: 6,
+  logo: '/image/logo.png',
+  time: function() {
+    return (new Date().toDateString());
+  }.property()
+});

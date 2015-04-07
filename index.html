@@ -29,6 +29,10 @@
 
   <script type="text/x-handlebars" data-template-name="index">
     <h1>Welcome to The Flint & Flame!</h1>
+    <p>There are {{productsCount}} products</p>
+    <!-- 原来的版本需要 {{bind-attr src='logo'}} 可是现在可以直接这样了, 但是 function 则还是需要使用 property() 指明-->
+    <img src='{{logo}}' alt='logo'/>
+    <p>Rendered on {{time}}</p>
   </script>
 
   <script type="text/x-handlebars" data-template-name="about">
