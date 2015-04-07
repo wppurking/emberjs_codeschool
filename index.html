@@ -11,7 +11,10 @@
 
 <body>
   <script type="text/x-handlebars" data-template-name="application">
-  <div class="navbar"></div>
+    <div class="navbar">
+    {{#link-to 'index' class='navbar-brand'}}Homepage{{/link-to}}
+    {{#link-to 'about'}}About{{/link-to}}
+    </div>
     <div class="container">
     <!-- 用于输出 template 的指令 -->
       {{outlet}}
