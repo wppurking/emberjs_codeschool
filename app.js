@@ -15,7 +15,7 @@ App.Router.map(function() {
   // File Path: none
   // Ember Path: /aboutus
   // Router: see below
-  this.route('about', {path: '/aboutus'})
+  this.route('about', {path: '/aboutus'});
 
   // have a index template default route
 
@@ -23,6 +23,16 @@ App.Router.map(function() {
   // * adjective
   // * adverbs
   // * verbs
+  // use resource for nouns
+  this.resource('products');
+
+  // Ember Router and Ember Route
+  // * Router: Translate a path into a route
+  // * Route: Provides data for the controller
+
+  // Router -> Route -> Controller -> Template
+
+  this.resource('product', {path: '/product/:title'});
 });
 
 // every route has a Default Controller
@@ -33,4 +43,43 @@ App.IndexController = Ember.Controller.extend({
   time: function() {
     return (new Date().toDateString());
   }.property()
+});
+
+
+App.PRODUCTS = [
+{
+  title: 'Flint',
+  price: 99,
+  description: 'Flint is ...',
+  isOnSale: true,
+  image: 'flint.png'
+},
+{
+  title: 'Kindling',
+  price: 249,
+  description: 'Easily...',
+  isOnSale: false,
+  image: 'kindling.png'
+}
+]
+
+
+// 如果将内容放在 controller 里面, 仍然可以实现数据的填充呀?
+// 难道是为了在 Route 中进行远端数据的获取填充?
+/*
+App.ProductsController = Ember.Controller.extend({
+  model: App.PRODUCTS
+});
+*/
+App.ProductsRoute = Ember.Route.extend({
+  model: function() {
+    return App.PRODUCTS;
+  }
+});
+
+App.ProductRoute = Ember.Route.extend({
+  model: function(params) {
+    console.log(params);
+    return App.PRODUCTS.findBy('title', params.title);
+  }
 });

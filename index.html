@@ -14,10 +14,12 @@
     <div class="navbar">
     {{#link-to 'index' class='navbar-brand'}}Homepage{{/link-to}}
     {{#link-to 'about'}}About{{/link-to}}
+    {{#link-to 'products'}}Products{{/link-to}}
      | 
      <ul class='nav navbar-nav navbar-right'>
     {{#link-to 'index' class='navbar-brand' tagName='li'}}Homepage{{/link-to}}
     {{#link-to 'about' tagName='li'}}About{{/link-to}}
+    {{#link-to 'products' tagName='li'}}Products{{/link-to}}
      </ul>
     </div>
     <div class="container">
@@ -38,6 +40,24 @@
   <script type="text/x-handlebars" data-template-name="about">
     <h1>About The Fire Spirits</h1>
   </script>
+
+  <script type="text/x-handlebars" data-template-name="products">
+    <h1>Products</h1>
+    {{#each product in model}}
+      {{#link-to 'product' product className='list-group-item'}}
+        {{product.title}}
+      {{/link-to}}
+      <br>
+    {{/each}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="product">
+    <h1>Product {{title}}</h1>
+    {{description}}<br>
+    ${{price}}
+  </script>
+
+
 </body>
 
 </html>
