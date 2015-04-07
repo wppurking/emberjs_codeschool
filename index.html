@@ -10,10 +10,21 @@
 </head>
 
 <body>
-  <script type="text/x-handlebars">
-  <div class="navbar">Wyatt</div>
-    <div class="container"></div>
+  <script type="text/x-handlebars" data-template-name="application">
+  <div class="navbar"></div>
+    <div class="container">
+    <!-- 用于输出 template 的指令 -->
+      {{outlet}}
+    </div>
     <footer class="container"></footer>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <h1>Welcome to The Flint & Flame!</h1>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="about">
+    <h1>About The Fire Spirits</h1>
   </script>
 </body>
 
