@@ -18,13 +18,18 @@ App.Router.map(function() {
   this.route('about', {path: '/aboutus'})
 
   // have a index template default route
+
+  // use route for 3 kinds of words
+  // * adjective
+  // * adverbs
+  // * verbs
 });
 
 // every route has a Default Controller
 // index => IndexController
 App.IndexController = Ember.Controller.extend({
   productsCount: 6,
-  logo: '/image/logo.png',
+  logo: 'http://www.easyacc.com/static/img/ico1_black.png',
   time: function() {
     return (new Date().toDateString());
   }.property()
