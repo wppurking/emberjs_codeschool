@@ -91,20 +91,30 @@ App.Product = DS.Model.extend({
   price: DS.attr(),
   description: DS.attr(),
   isOnSale: DS.attr(),
-  image: DS.attr()
+  image: DS.attr(),
+  // async: 延迟加载
+  reviews: DS.hasMany('review', {async: true})
 });
+
+App.Review = DS.Model.extend({
+  text: DS.attr('string'),
+  reviewedAt: DS.attr('date'),
+  product: DS.belongsTo('product')
+});
+
 
 App.Product.FIXTURES = [
   {
-    id: 5,
+    id: 1,
     title: 'Flint',
     price: 99,
     description: 'Flint is ...',
     isOnSale: true,
-    image: 'flint.png'
+    image: 'flint.png',
+    reviews: [100, 101]
   },
   {
-    id: 3,
+    id: 2,
     title: 'Kindling',
     price: 249,
     description: 'Easily...',
@@ -113,4 +123,15 @@ App.Product.FIXTURES = [
   }
 ]
 
-
+App.Review.FIXTURES = [
+{
+  id: 100,
+  text: 'first reivew',
+  product: 1
+},
+{
+  id: 101,
+  text: '#101 Review',
+  product: 1
+}
+]

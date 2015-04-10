@@ -62,7 +62,16 @@
   <script type="text/x-handlebars" data-template-name="product">
     <h1>Product {{title}}</h1>
     {{description}}<br>
-    ${{price}}
+    <p>Buy for ${{price}}</p>
+
+    <h3>Reviews</h3>
+    <ul>
+    {{#each review in reviews}}
+    <li>{{review.text}}</li>
+    {{else}}
+    <li>No Review yes!</li>
+    {{/each}}
+    </ul>
   </script>
 
 
