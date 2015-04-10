@@ -4,6 +4,8 @@ var App = Em.Application.create({
   LOG_TRANSITIONS: true
 });
 
+// 下面两种写法都可行
+//App.ApplicationAdapter = DS.FixtureAdapter;
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 // 树的枝干, 用于寻找到叶子节点(template)
