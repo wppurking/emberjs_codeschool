@@ -44,7 +44,7 @@
   <script type="text/x-handlebars" data-template-name="products">
     <div class='row'>
       <div class='col-md-4 col-sm-4'>
-        <h1>Products</h1>
+        <h1>Products  {{productsCount}}</h1>
         {{#each product in model}}
           {{#link-to 'product' product className='list-group-item'}}
             {{product.title}}
@@ -62,7 +62,7 @@
   <script type="text/x-handlebars" data-template-name="product">
     <h1>Product {{title}}</h1>
     {{description}}<br>
-    <p>Buy for ${{price}}</p>
+    <p style='color: {{priceColor}}'>Buy for ${{price}}</p>
 
     <h3>Reviews</h3>
     <ul>

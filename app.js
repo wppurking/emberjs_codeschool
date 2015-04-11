@@ -64,6 +64,12 @@ App.ProductsRoute = Ember.Route.extend({
   }
 });
 
+App.ProductsController = Ember.ArrayController.extend({
+  productsCount: Ember.computed.alias('length')
+});
+
+
+
 /* 如果仅仅是从 id 查询, 则所有代码可省略
 App.ProductRoute = Ember.Route.extend({
   model: function(params) {
@@ -72,6 +78,18 @@ App.ProductRoute = Ember.Route.extend({
   }
 });
 */
+App.ProductController = Ember.ObjectController.extend({
+  // 测试值自动变化
+  // App.Product.store.find('product', 4).then(function(p){ p.set('price', 222))})
+  priceColor: function() {
+    var price = this.get('price');
+    if(price > 230) {
+      return 'red';
+    } else {
+      return 'green';
+    }
+  }.property('price')
+});
 
 
 // Ember Data
@@ -120,7 +138,24 @@ App.Product.FIXTURES = [
     description: 'Easily...',
     isOnSale: false,
     image: 'kindling.png'
+  },
+  {
+    id: 3,
+    title: 'Wyatt Box',
+    price: 228,
+    description: 'Easily...',
+    isOnSale: false,
+    image: 'kindling.png'
+  },
+  {
+    id: 4,
+    title: 'Holly Pad',
+    price: 321,
+    description: 'Easily...',
+    isOnSale: false,
+    image: 'kindling.png'
   }
+
 ]
 
 App.Review.FIXTURES = [
