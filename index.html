@@ -46,11 +46,7 @@
     <h3>Hello to see product/onsale list is Deals</h3>
     <ul>
       {{#each}}
-      <li>
-        <p>{{title}}</p>
-        <p>{{description}}</p>
-        <p>${{price}}</p>
-      </li>
+        {{products-details product=this tagName='li'}}
       {{/each}}
     </ul>
 
@@ -60,11 +56,7 @@
     <h3>Hello to see product/index list Deals Products</h3>
     <ul>
       {{#each deals}}
-      <li>
-        <p>{{title}}</p>
-        <p>{{description}}</p>
-        <p>${{price}}</p>
-      </li>
+        {{products-details product=this tagName='li'}}
       {{/each}}
     </ul>
   </script>
@@ -100,6 +92,13 @@
     <li>No Review yes!</li>
     {{/each}}
     </ul>
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="components/products-details">
+    <p>{{product.title}}</p>
+    <p>{{product.description}}</p>
+    <p>${{product.price}}</p>
   </script>
 
 
