@@ -31,6 +31,7 @@ App.Router.map(function() {
   // use resource for nouns
   this.resource('products', function() {
     this.resource('product', {path: '/:product_id'});
+    this.route('deals');
   });
 
   // Ember Router and Ember Route
@@ -39,6 +40,18 @@ App.Router.map(function() {
 
   // Router -> Route -> Controller -> Template
 });
+
+// Nested Route
+App.ProductsDealsRoute = Em.Route.extend({
+  model: function() {
+    var prods = this.modelFor('products').filter(function(prod) {
+      return prod.get('price') < 220;
+    });
+    console.log(prods);
+    return prods;
+  }
+});
+
 
 // every route has a Default Controller
 // index => IndexController
@@ -66,6 +79,7 @@ App.ProductsIndexController = Em.ArrayController.extend({
     })
   }.property('@each.isOnSale')
 });
+
 
 // 如果将内容放在 controller 里面, 仍然可以实现数据的填充呀?
 // 难道是为了在 Route 中进行远端数据的获取填充?

@@ -15,6 +15,7 @@
     {{#link-to 'index' class='navbar-brand'}}Homepage{{/link-to}}
     {{#link-to 'about'}}About{{/link-to}}
     {{#link-to 'products'}}Products{{/link-to}}
+    {{#link-to 'products.deals'}}Deals{{/link-to}}
      | 
      <ul class='nav navbar-nav navbar-right'>
     {{#link-to 'index' class='navbar-brand' tagName='li'}}Homepage{{/link-to}}
@@ -41,6 +42,19 @@
     <h1>About The Fire Spirits</h1>
   </script>
 
+  <script type="text/x-handlebars" data-template-name='products/deals'>
+    <h3>Hello to see product/onsale list is Deals</h3>
+    <ul>
+      {{#each}}
+      <li>
+        <p>{{title}}</p>
+        <p>{{description}}</p>
+        <p>${{price}}</p>
+      </li>
+      {{/each}}
+    </ul>
+
+  </script>
 
   <script type="text/x-handlebars" data-template-name="products/index">
     <h3>Hello to see product/index list Deals Products</h3>
