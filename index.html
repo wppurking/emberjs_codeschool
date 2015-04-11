@@ -41,6 +41,20 @@
     <h1>About The Fire Spirits</h1>
   </script>
 
+
+  <script type="text/x-handlebars" data-template-name="products/index">
+    <h3>Hello to see product/index list Deals Products</h3>
+    <ul>
+      {{#each deals}}
+      <li>
+        <p>{{title}}</p>
+        <p>{{description}}</p>
+        <p>${{price}}</p>
+      </li>
+      {{/each}}
+    </ul>
+  </script>
+
   <script type="text/x-handlebars" data-template-name="products">
     <div class='row'>
       <div class='col-md-4 col-sm-4'>

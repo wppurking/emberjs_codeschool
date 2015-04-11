@@ -51,6 +51,22 @@ App.IndexController = Ember.Controller.extend({
 });
 
 
+// ProductsIndex
+App.ProductsIndexRoute = Em.Route.extend({
+  model: function() {
+    // 为了让 Controller 处理, 其实也可以在这里处理 Filter.
+    return this.store.findAll('product');
+  }
+});
+
+App.ProductsIndexController = Em.ArrayController.extend({
+  deals: function() {
+    return this.filter(function(prod) {
+      return prod.get('price') < 100;
+    })
+  }.property('@each.isOnSale')
+});
+
 // 如果将内容放在 controller 里面, 仍然可以实现数据的填充呀?
 // 难道是为了在 Route 中进行远端数据的获取填充?
 /*
@@ -142,7 +158,7 @@ App.Product.FIXTURES = [
   {
     id: 3,
     title: 'Wyatt Box',
-    price: 228,
+    price: 98,
     description: 'Easily...',
     isOnSale: false,
     image: 'kindling.png'
