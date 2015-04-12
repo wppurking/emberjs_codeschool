@@ -122,6 +122,14 @@ App.ProductController = Ember.ObjectController.extend({
 });
 
 
+// 加工前台的 html 页面内容, 例如 css 的 className 值变化
+// 当有 view 后, 前端会默认嵌套一个的 div ember-view
+App.ProductView = Em.View.extend({
+  classNameBindings: ['isOnSale'],
+  // 透过 view 中的 (Object)controller Context 寻找到 Object Model 的 isOnSale 参数
+  isOnSale: Em.computed.alias('controller.isOnSale')
+});
+
 
 // Components
 App.ProductsDetailsComponent = Em.Component.extend({
