@@ -122,6 +122,24 @@ App.ProductController = Ember.ObjectController.extend({
 });
 
 
+
+// Components
+App.ProductsDetailsComponent = Em.Component.extend({
+  /*
+  reviewsCount: function() {
+    return this.get('product.reviews.length');
+  }.property('product.reviews.length')
+  */
+  reviewsCount: Em.computed.alias('product.reviews.length'),
+  /*
+  hasReviews: function() {
+    return this.get('reviewsCount') > 0;
+  }.property('reviewsCount')
+  */
+  hasReviews: Em.computed.gt('product.reviews.length', 0)
+});
+
+
 // Ember Data
 // Ember Data has a Store: Central repository for records in your application,
 // available in [routes(route)] and [controllers]

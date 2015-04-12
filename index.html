@@ -99,6 +99,9 @@
     <p>{{product.title}}</p>
     <p>{{product.description}}</p>
     <p>${{product.price}}</p>
+    {{#if hasReviews}}
+    <p>Reviews: {{reviewsCount}}</p>
+    {{/if}}
   </script>
 
 
