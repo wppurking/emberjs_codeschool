@@ -82,7 +82,7 @@
   <script type="text/x-handlebars" data-template-name="product">
     <h1>Product {{title}}</h1>
     {{description}}<br>
-    <p style='color: {{priceColor}}'>Buy for ${{price}}</p>
+    <p style='color: {{priceColor}}'>Buy for {{doller price}}</p>
     {{partial 'reviews'}}
     {{render 'reviews' reviews}}
     {{#if isNotReviewd}}
@@ -124,7 +124,7 @@
   <script type="text/x-handlebars" data-template-name="components/products-details">
     <p>{{product.title}}</p>
     <p>{{product.description}}</p>
-    <p>${{product.price}}</p>
+    <p>${{doller product.price}}</p>
     {{#if hasReviews}}
     <p>Reviews: {{reviewsCount}}</p>
     {{/if}}

@@ -8,6 +8,12 @@ var App = Em.Application.create({
 //App.ApplicationAdapter = DS.FixtureAdapter;
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
+
+// 为 handlebar 注册额外的 helper 方法
+Ember.Handlebars.registerBoundHelper('doller', function(text) {
+  return "$ " + text;
+});
+
 // 树的枝干, 用于寻找到叶子节点(template)
 App.Router.map(function() {
   // http://example.com#/about
