@@ -114,6 +114,7 @@ App.ProductRoute = Ember.Route.extend({
 });
 */
 App.ProductController = Ember.ObjectController.extend({
+  text: '',
   // 测试值自动变化
   // App.Product.store.find('product', 4).then(function(p){ p.set('price', 222))})
   priceColor: function() {
@@ -123,7 +124,26 @@ App.ProductController = Ember.ObjectController.extend({
     } else {
       return 'green';
     }
-  }.property('price')
+  }.property('price'),
+
+  actions: {
+    createReview: function() {
+      var review = this.store.createRecord('review', {
+        text: this.get('text'),
+        product: this.get('model'),
+        reviewedAt: new Date()
+      });
+
+      var controller = this;
+      review.save().then(function() {
+        controller.set('text', '');
+        review['id'] = Math.ceil(Math.random() * 100);
+        // 不确定这个 addObject 是否需要.
+        // 因为如果没有这一行, 页面也能够正确的现实新添加的数据了.
+        controller.get('model.reviews').addObject(review);
+      });
+    }
+  }
 });
 
 
@@ -223,11 +243,13 @@ App.Review.FIXTURES = [
 {
   id: 100,
   text: 'first reivew',
+  reviewedAt: new Date('2015-03-01'),
   product: 1
 },
 {
   id: 101,
   text: '#101 Review',
+  reviewedAt: new Date('2015-05-01'),
   product: 1
 }
 ]
