@@ -83,14 +83,18 @@
     <h1>Product {{title}}</h1>
     {{description}}<br>
     <p style='color: {{priceColor}}'>Buy for ${{price}}</p>
+    {{partial 'reviews'}}
+  </script>
 
+  <script type="text/x-handlebars" data-template-name='_reviews'>
+  <!-- use the same Controller and split hole html into small picese of 'Partial' html -->
     <h3>Reviews</h3>
     <ul>
-    {{#each review in reviews}}
-    <li>{{review.text}}</li>
-    {{else}}
-    <li>No Review yes!</li>
-    {{/each}}
+      {{#each review in reviews}}
+      <li>{{review.text}}</li>
+      {{else}}
+      <li>No Review yes!</li>
+      {{/each}}
     </ul>
   </script>
 
