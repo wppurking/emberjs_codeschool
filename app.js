@@ -114,7 +114,14 @@ App.ProductRoute = Ember.Route.extend({
 });
 */
 App.ProductController = Ember.ObjectController.extend({
-  text: '',
+  // Controller is singleton, 所以需要为每个 model 变动时创建一个新的 review 实例来避免 text 框中的值被一直保留下来
+  review: function() {
+    // 这里没有预先指定 product: this.get('model')
+    // 因为其会自动为 product.reviews 添加无 text 的空 review, 而且每次点击生成一个.
+    // 现在仅仅将 product 挪到后面去添加, 并没有解决每次点击仍然生成一个空 review 的问题.
+    return this.store.createRecord('review', {});
+  }.property('model'),
+  isNotReviewd: Ember.computed.alias('review.isNew'),
   // 测试值自动变化
   // App.Product.store.find('product', 4).then(function(p){ p.set('price', 222))})
   priceColor: function() {
@@ -128,15 +135,11 @@ App.ProductController = Ember.ObjectController.extend({
 
   actions: {
     createReview: function() {
-      var review = this.store.createRecord('review', {
-        text: this.get('text'),
-        product: this.get('model'),
-        reviewedAt: new Date()
-      });
-
+      var review = this.get('review');
+      review.set('product', this.get('model'));
+      review.set('reviewedAt', new Date());
       var controller = this;
       review.save().then(function() {
-        controller.set('text', '');
         review['id'] = Math.ceil(Math.random() * 100);
         // 不确定这个 addObject 是否需要.
         // 因为如果没有这一行, 页面也能够正确的现实新添加的数据了.

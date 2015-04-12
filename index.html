@@ -85,13 +85,15 @@
     <p style='color: {{priceColor}}'>Buy for ${{price}}</p>
     {{partial 'reviews'}}
     {{render 'reviews' reviews}}
+    {{#if isNotReviewd}}
     <div>
-    Text: {{text}}
-    <br>
-    {{textarea value=text cols=50}}
-    <br>
-    <button {{action 'createReview'}}>Review</button>
+      Text: {{review.text}}
+      <br>
+      {{textarea value=review.text cols=50}}
+      <br>
+      <button {{action 'createReview'}}>Review</button>
     </div>
+    {{/if}}
   </script>
 
   <script type="text/x-handlebars" data-template-name='_reviews'>
