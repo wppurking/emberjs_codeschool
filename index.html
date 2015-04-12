@@ -84,14 +84,27 @@
     {{description}}<br>
     <p style='color: {{priceColor}}'>Buy for ${{price}}</p>
     {{partial 'reviews'}}
+    {{render 'reviews' reviews}}
   </script>
 
   <script type="text/x-handlebars" data-template-name='_reviews'>
   <!-- use the same Controller and split hole html into small picese of 'Partial' html -->
-    <h3>Reviews</h3>
+    <h3>Reviews use `partial`</h3>
     <ul>
       {{#each review in reviews}}
       <li>{{review.text}}</li>
+      {{else}}
+      <li>No Review yes!</li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name='reviews'>
+    <!-- use new Controller and split hole html into small picese of 'render' html -->
+    <h3>Reviews use `render`(sort id desc)</h3>
+    <ul>
+      {{#each}}
+      <li>{{text}}-[{{id}}]</li>
       {{else}}
       <li>No Review yes!</li>
       {{/each}}

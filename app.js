@@ -99,6 +99,11 @@ App.ProductsController = Ember.ArrayController.extend({
 });
 
 
+App.ReviewsController = Ember.ArrayController.extend({
+  sortProperties: ['id'],
+  sortAscending: false
+});
+
 
 /* 如果仅仅是从 id 查询, 则所有代码可省略
 App.ProductRoute = Ember.Route.extend({
